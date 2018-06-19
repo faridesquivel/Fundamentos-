@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+	</head>
+	<body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="three.js"></script>
+        <script src="OrbitControls.js"></script>
+        <script type="text/javascript">
+            var scene = new THREE.Scene();
+            var aspect = window.innerWidth / window.innerHeight;
+            var camera = new THREE.PerspectiveCamera( 75, aspect, 0.1, 1000 );
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+               
+            var velocidadM1 = 0;
+            var moverM2 = 0;
+            var moverM3 = 0;
+            var moverM4 = 0;
+            var moverM5 = 0;
+
+            var vRM1 = 0;
+            var vRM2= 0;
+            function moveM1() {
+                var m1 = document.getElementById("s1");
+                if(m1.value == 50){
+                    velocidadM1 = 0;  
+                    vRM1 = 0;
+                    $.get("/stop");      
+                } else if (m1.value > 50) {
+                    velocidadM1 = ((m1.value * 255) / 49) - 266;
+                    console.log(velocidadM1);
+                    vRM1 = (m1.value*0.01/49) - 0.01;
+                    $.get("/start", { velocidadM1 });
+                    console.log(vRM1);
+                } else if(m1.value < 50) {
+                    velocidadM1 = ((-(m1.value * 255) / 49) + 260)*-1;
+                    console.log(velocidadM1);
+                    console.log(m1.value);
+                    vRM1 = ((m1.value*0.01/49) - 0.01);
+                    $.get("/reverse");
+                    console.log(vRM1);
+                }
+            }
+
+            function stopM1() {
+                $.get("/stop");
+                vRM1 = 0;
+            }
+            
+            
+
+            
+            function stopM3() {
+                $.get("/stopM2");
+            }
+            
+            function stopM4() {
+                $.get("/stopM4");
+            }
+            
+            function stopM5() {
+                $.get("/stopM5");
+            }
+
+            function moveM2() {
+                var m2 = document.getElementById("s2");
+                console.log(m2.value);
+                if (m2.value == 50) {
+                    $.get("/stopM2");  
+                } else if(m2.value > 50){
+                    $.get("/startM2");
+                } else if(m2.value < 50) {
+                    $.get("/reverseM2");
+                }
+                //vRM2 = (m2.value * )
+            }
+            function moveM3() {
+                var m3 = document.getElementById("rangeDanger3");
+                console.log(m3.value);
+                if (m3.value == 50) {
+                    $.get("/stopM3");  
+                } else if(m3.value > 50){
+                    $.get("/startM3");
+                } else if(m3.value < 50) {
+                    $.get("/reverseM3");
+                }
+            }
+
+            function moveM4() {
+                var m4 = document.getElementById("rangeDanger4");
+                console.log(m4.value);
+                if (m4.value == 50) {
+                    $.get("/stopM4");  
+                } else if(m4.value > 50){
+                    $.get("/startM4");
+                } else if(m4.value < 50) {
+                    $.get("/reverseM4");
+                }
+            }
+            function moveM5() {
+                var m5 = document.getElementById("rangeDanger5");
+                console.log(m5.value);
+                if (m5.value == 50) {
+                    $.get("/stopM5");  
+                } else if(m5.value > 50){
+                    $.get("/startM5");
+                } else if(m5.value < 50) {
+                    $.get("/reverseM5");
+                }
+            }
+
+
+            var controls = THREE.OrbitControls( camera, renderer.domElement );
+            var light = new THREE.AmbientLight( 0x404040 );
+            var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+            var material = new THREE.MeshNormalMaterial();
+            var geometry2 = new THREE.SphereGeometry( 1, 1000);
+            var material2 = new THREE.MeshStandardMaterial();
+            var circle = new THREE.Mesh( geometry2, material );
+            var cube = new THREE.Mesh( geometry, material );
+            var cube2 = new THREE.Mesh( geometry, material );
+            var cube3 = new THREE.Mesh( geometry, material );
+            var cube4 = new THREE.Mesh( geometry, material );
+            var cube5 = new THREE.Mesh( geometry, material );
+            var cube6 = new THREE.Mesh( geometry, material );
+            var cube7 = new THREE.Mesh( geometry, material );
+            var cube8 = new THREE.Mesh( geometry, material );
+            var cube9 = new THREE.Mesh( geometry, material );
+            var cube10 = new THREE.Mesh( geometry, material );
+            var cube11 = new THREE.Mesh( geometry, material );
+            var cube12 = new THREE.Mesh( geometry, material );
+            var cube13 = new THREE.Mesh( geometry, material );
+            var cube14 = new THREE.Mesh( geometry, material );
+            var cube15 = new THREE.Mesh( geometry, material );
+            var cube16 = new THREE.Mesh( geometry, material ); // brazo
+            var cube17 = new THREE.Mesh( geometry, material ); // brazo
+            
+            var group1 = new THREE.Group();
+            var group2 = new THREE.Group();
+            group1.add(circle);
+            group1.add(cube);
+            group1.add(cube2);
+            group1.add(cube3);
+            group1.add(cube4);
+            group1.add(cube5);
+            group1.add(cube6);
+            group1.add(cube7);
+            group1.add(cube8);
+            group1.add(cube9);
+            group1.add(cube11);
+            group1.add(cube12);
+            group1.add(cube13);
+            group1.add(cube14);
+            group1.add(cube15);
+            group2.add(cube16);
+            group2.add(cube17);
+            
+            scene.add( light );
+            scene.add( group1 );
+            scene.add( group2 );
+            camera.position.z = 5;
+            camera.position.y = 1.5;
+            var cont = 0;
+            var derec = false;
+            var render = function () {    
+                requestAnimationFrame( render );
+                console.log(group2.rotation.y);
+                if(vRM2 != 0) {
+                    if(group2.rotation.y >= (group1.rotation.y+0.04)) {
+                        group2.rotation.y = group2.rotation.y - 0.001;
+                        derec = false;
+                    } else if(group2.rotation.y <= (group1.rotation.y - 0.04)) {
+                        group2.rotation.y = group2.rotation.y + 0.001;
+                        derec = true;
+                    } else {
+                        if(derec == true) {
+                            group2.rotation.y += 0.001;
+                        } else {
+                            group2.rotation.y -= 0.001;
+                        }
+                    }
+                }
+
+                group1.rotation.y += vRM1;
+                group2.rotation.y += vRM1;
+                renderer.render( scene, camera ); 
+            };
+
+            group1.rotation.y += 0.5;
+            group2.rotation.y += 0.5;
+            cube.scale.set(0.2,1,0.2);
+            cube2.scale.set(0.2,1,0.2);
+            cube3.scale.set(0.2,2,0.2);
+            cube4.scale.set(0.2,2,0.2);
+            cube5.scale.set(0.2,2.2,0.2);
+            cube6.scale.set(0.3,0.7,0.4);
+            cube7.scale.set(0.3,2,0.1);
+            cube8.scale.set(0.1,1,0.1);
+            cube9.scale.set(0.2,0.6,0.5);
+            cube11.scale.set(0.5,0.5,0.3);
+            cube12.scale.set(0.1,1,0.1);
+            cube13.scale.set(0.1,1,0.1);
+            cube14.scale.set(0.1,0.3,0.1);
+            cube15.scale.set(0.1,0.3,0.1);
+            cube16.scale.set(0.1,0.3,0.1);
+            cube17.scale.set(0.1,0.3,0.1);
+            
+
+            cube3.rotation.x = Math.PI / 2;
+            cube4.rotation.x = Math.PI / 2;
+            cube3.rotation.z = Math.PI / 2;
+            cube4.rotation.z = Math.PI / 2;
+            cube5.rotation.z = Math.PI / 3;
+            cube6.rotation.x = Math.PI / 2;
+            cube7.rotation.z = Math.PI / 2;
+            cube8.rotation.z = Math.PI / 6;
+            cube9.rotation.z = Math.PI*3.2 / 4;
+            cube11.rotation.z= Math.PI / 3;
+            cube12.rotation.z= Math.PI*2.6 / 4;
+            cube13.rotation.z= Math.PI*2.6 / 4;
+            cube14.rotation.z= Math.PI/2;
+            cube15.rotation.z= Math.PI/2;
+            cube14.rotation.y= Math.PI/4;
+            cube15.rotation.y= Math.PI*3/4;
+            cube16.rotation.z= Math.PI/2;
+            cube17.rotation.z= Math.PI/2;
+            cube16.rotation.y= Math.PI*3.6/4;
+            cube17.rotation.y= Math.PI/8;
+            
+
+            circle.scale.set(1,0.2,1); 
+            circle.position.y -= 0.4;
+            cube.position.x +=0.5;
+            cube.position.z -=0.2;
+            cube2.position.x +=0.5;
+            cube2.position.z +=0.2;
+            cube3.position.z -= 0.2;
+            cube3.position.y += 0.5;
+            cube3.position.x -= 0.1;
+            cube4.position.z += 0.2;
+            cube4.position.y += 0.5;
+            cube4.position.x -= 0.1;
+            cube5.position.z -= 0;
+            cube5.position.y += 1.3;
+            cube5.position.x += 0;
+            cube6.position.z += 0;
+            cube6.position.y += 0.8;
+            cube6.position.x += 0.9;
+            cube7.position.z -= 0;
+            cube7.position.y += 2.3;
+            cube7.position.x += 0.3;
+            cube8.position.z += 0;
+            cube8.position.y += 1.8;
+            cube8.position.x += 0.44;
+            cube9.position.z -= 0;
+            cube9.position.y += 2.1;
+            cube9.position.x += -0.8;
+            cube11.position.z += 0;
+            cube11.position.y += 1.1;
+            cube11.position.x += 0.8;
+            cube12.position.z -= 0.2;
+            cube12.position.y += 0.8;
+            cube12.position.x += 0;
+            cube13.position.z += 0.2;
+            cube13.position.y += 0.8;
+            cube13.position.x += 0;
+            cube14.position.z -= 0.1;
+            cube14.position.y += 2.3;
+            cube14.position.x += 1.2;
+            cube15.position.z += 0.1;
+            cube15.position.y += 2.3;
+            cube15.position.x += 1.2; 
+            cube16.position.z -= 0.15;
+            cube16.position.y += 2.3;
+            cube16.position.x += 1.4;
+            cube17.position.z += 0.15;
+            cube17.position.y += 2.3;
+            cube17.position.x += 1.4;
+            render();
+        </script>
+        <div class="container-fluid">
+            <div class = "row">
+                <div class="col-s-3 slider">
+                    <div>
+                        <div class="label"> MOTOR 1</div>
+                        <input type="range" name="range" id="s1" min="1" max="100" value="50" onchange="rangeDanger.value=value-50; moveM1();">
+                        <output id="rangeDanger" class="outp">50</output>
+                    </div>
+                    <div>
+                        <button class="btn btn-danger stopMotorButton" onclick="stopM1();">
+                            ALTO
+                        </button>
+                    </div>
+                </div>
+                <div class="col-s-3 slider2">
+                    <div>
+                        <div class="label"> MOTOR 2</div>
+                        <input type="range" name="range2" id="s2" min="1" max="100" value="50" onchange="rangeDanger2.value=value-50;moveM2();">
+                        <output id="rangeDanger2" class="outp">50</output>
+                    </div>
+                    <div>
+                            <button class="btn btn-danger stopMotorButton" onclick="stopM2();">
+                                ALTO
+                            </button>
+                    </div>
+                </div>
+                <div class="col-s-3 slider3">
+                    <div class="label"> MOTOR 3</div>
+                    <input type="range" name="range3" id="s3" min="1" max="100" value="50" onchange="rangeDanger3.value=value-50;moveM3();">
+                    <output id="rangeDanger3" class="outp">50</output>
+                    <div>
+                        <button class="btn btn-danger stopMotorButton" onclick="stopM3();">
+                            ALTO
+                        </button>
+                    </div>
+                </div>
+
+                
+                <div class="col-s-3 slider4">
+                    <div class="label"> MOTOR 4</div>
+                    <input type="range" name="range4" id="s4" min="1" max="100" value="50" onchange="rangeDanger4.value=value-50;moveM4();">
+                    <output id="rangeDanger4" class="outp">50</output>
+                    <div>
+                        <button class="btn btn-danger stopMotorButton" onclick="stopM4();">
+                            ALTO
+                        </button>
+                    </div>
+                </div>
+
+                
+                <div class="col-s-3 slider5">
+                    <div class="label"> MOTOR 5</div>
+                    <input type="range" name="range5" id="s5" min="1" max="100" value="50" onchange="rangeDanger5.value=value-50;moveM5();">
+                    <output id="rangeDanger5" class="outp">50</output>
+                    <div>
+                        <button type="button" class="btn btn-danger stopMotorButton" onclick="stopM5();">
+                            ALTO
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,124 @@
+#info {
+	position: absolute;
+	top: 10px;
+	text-align: center;
+	z-index: 100;
+    display:inline;
+	margin: 10px;
+	background-color: #ff6600;
+	border: 0;
+}
+
+#info2 {
+	position: absolute;
+	top: 50px;
+	text-align: center;
+	z-index: 100;
+    display:inline;
+	margin: 10px;
+	background-color: #ff6600;
+	border: 0;
+}
+
+#info3 {
+	position: absolute;
+	top: 90px;
+	text-align: center;
+	z-index: 100;
+    display:inline;
+	margin: 10px;
+	background-color: #ff6600;
+	border: 0;
+}
+
+.rf {
+	position: absolute;
+	top: 130px;
+	align-self: left;
+	size: 4px;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #ff6600;
+	border: 0;
+	width: 10px;
+}
+
+.slider {
+	position: absolute;
+	top: 5px;
+	align-self: left;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #113a5d;
+	border: 0;
+	border-radius: 10px;
+}
+.slider2 {
+	position: absolute;
+	top: 115px;
+	align-self: left;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #113a5d;
+	border: 0;
+	border-radius: 10px;
+}
+.slider3 {
+	position: absolute;
+	top: 225px;
+	align-self: left;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #113a5d;
+	border: 0;
+	border-radius: 10px;
+}
+
+.slider4 {
+	position: absolute;
+	top: 335px;
+	align-self: left;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #113a5d;
+	border: 0;
+	border-radius: 10px;
+}
+
+.slider5 {
+	position: absolute;
+	top: 445px;
+	align-self: left;
+	text-align: center;
+	z-index: 100;
+    display:block;
+	margin: 10px;
+	background-color: #113a5d;
+	border: 0;
+	border-radius: 10px;
+}
+
+.stopMotorButton {
+	position: absolute;
+	display: block;
+	align-self: left;
+	z-index: 100;
+	top: 15px;
+	left: 150px;
+	border: 0;
+	border-radius: 10;
+}
+
+.outp {
+	color: #f9f9f9;
+}
